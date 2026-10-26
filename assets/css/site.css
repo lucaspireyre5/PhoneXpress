@@ -694,3 +694,23 @@ main,.site-footer{position:relative;z-index:1}
 .quote-new-link:hover{color:#034878;}
 .quote-is-confirmed #quote-copy-status{font-size:12px;color:#166d9e;}
 @media(max-width:650px){.quote-section.quote-is-confirmed .quote-form-wrap{padding:27px 20px 28px;}.quote-is-confirmed .quote-success-actions{flex-direction:column;}.quote-is-confirmed .quote-success-actions .btn{width:100%;}}
+
+
+/* V26 — formulaire seul, recentré après suppression du bloc de contact. */
+.quote-section .quote-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 830px);
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+  margin-inline: auto;
+}
+.quote-section .quote-form-wrap {
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+}
+@media (max-width: 640px) {
+  .quote-section .quote-grid { grid-template-columns: minmax(0, 1fr); }
+  .quote-section .quote-form-wrap { padding: 24px 18px; }
+}

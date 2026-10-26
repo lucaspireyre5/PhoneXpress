@@ -1,0 +1,24 @@
+PHONE XPRESS — V26 FORMULAIRE CORRIGÉ ET RECENTRÉ
+================================================
+
+CHANGEMENTS
+- Bloc « Vous préférez échanger de vive voix ? » et note inférieure retirés.
+- Formulaire recentré, grille unique responsive. Le numéro reste dans le pied de page.
+- Envoi FormSubmit réécrit sur son API AJAX officielle (pas de fenêtre ni iframe cachée).
+- Confirmation intégrée après réponse success = true / "true" de FormSubmit uniquement.
+- En cas de réponse non confirmée, affichage d’une copie et lien « Ouvrir ma messagerie ».
+- Aucun renvoi automatique : cela évite les doubles demandes.
+
+DESTINATAIRE
+phonexpress34480@gmail.com
+
+MISE EN LIGNE
+Décompressez le ZIP et remplacez le contenu du dépôt GitHub utilisé par l'iframe Odoo.
+Conservez la hiérarchie index.html / assets/... à la racine du dépôt.
+Si Odoo affiche le site via iframe, changez son URL avec ?v=26 pour contourner le cache.
+Rafraîchissez la page, complétez et envoyez UNE demande de test, puis contrôlez sa réception effective dans la boîte e-mail et dans les spams. Le test local est simulé ; aucun message réel n'est envoyé lors de la préparation de cette archive.
+
+EN CAS D’ÉCHEC
+- Si FormSubmit demande l'activation de la boîte, activez-la via le courriel reçu.
+- Si l'API est indisponible, la demande est conservée pour copie ou envoi manuel.
+- Le navigateur intégré Odoo peut imposer ses propres règles réseau ; vérifiez en parallèle la page GitHub Pages directement.

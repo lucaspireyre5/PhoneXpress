@@ -1,7 +1,7 @@
-/* Phone Xpress — formulaire V25 compatible Odoo.
-   Un seul envoi HTML vers FormSubmit dans un iframe invisible.
-   Confirmation uniquement après redirection _next vers notre page témoin.
-   Aucune redirection visible, aucun deuxième envoi automatique. */
+/* Phone Xpress V26 — envoi officiel FormSubmit AJAX (sans redirection).
+   Confirmation seulement si le service renvoie success === true ou "true".
+   Ne jamais relancer automatiquement : en cas de problème réseau,
+   une requête pourrait déjà avoir été traitée. Compatible iframe Odoo. */
 (() => {
   'use strict';
   const form = document.getElementById('quote-form');
@@ -31,22 +31,19 @@
   const draftEmail = byId('quote-draft-email');
   const draftCopy = byId('quote-draft-copy');
   const draftCopyStatus = byId('quote-draft-copy-status');
-  const successUrl = byId('px-success-url');
   const sourceUrl = byId('px-source-url');
   const recipient = 'phonexpress34480@gmail.com';
   const necessary = [status, submit, device, fault, phone, name, email, model, description,
     privacy, honey, result, resultTitle, summary, newQuote, copyQuote, copyStatus, fallback,
-    draft, draftEmail, draftCopy, draftCopyStatus, successUrl, sourceUrl];
+    draft, draftEmail, draftCopy, draftCopyStatus, sourceUrl];
   if (!necessary.every(Boolean)) return;
 
   let sending = false;
-  let pendingToken = null;
-  let timer = null;
-  let frame = null;
-  let lastRecap = '';
-  const originalSubmitText = submit.querySelector('span')?.textContent || 'Envoyer ma demande';
-  const section = document.getElementById('devis');
+  const section = byId('devis');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const textLabel = submit.querySelector('span');
+  const originalSubmitText = textLabel?.textContent || 'Envoyer ma demande';
+
   const notify = (message, error = false) => {
     status.textContent = message;
     status.classList.toggle('error', error);
@@ -64,15 +61,12 @@
       + '&body=' + encodeURIComponent(recap);
     fallback.hidden = false;
   };
-  const release = () => {
-    sending = false;
-    pendingToken = null;
-    if (timer) clearTimeout(timer);
-    timer = null;
-    submit.disabled = false;
-    form.removeAttribute('aria-busy');
-    const label = submit.querySelector('span');
-    if (label) label.textContent = originalSubmitText;
+  const setSending = value => {
+    sending = value;
+    submit.disabled = value;
+    if (value) form.setAttribute('aria-busy', 'true');
+    else form.removeAttribute('aria-busy');
+    if (textLabel) textLabel.textContent = value ? 'Envoi en cours…' : originalSubmitText;
   };
   const copy = async (source, feedback) => {
     try {
@@ -94,55 +88,6 @@
     else if (!device.value) device.value = 'Smartphone';
   }));
 
-  const receiveSuccess = () => {
-    if (!sending || !pendingToken) return;
-    release();
-    hideFallback();
-    notify('');
-    summary.value = lastRecap;
-    copyStatus.textContent = '';
-    form.hidden = true;
-    result.hidden = false;
-    section?.classList.add('quote-is-confirmed');
-    result.scrollIntoView({behavior: reduced.matches ? 'auto' : 'smooth', block: 'center'});
-    resultTitle.focus({preventScroll:true});
-  };
-
-  // Message envoyé uniquement par confirmation-devis.html après la redirection
-  // FormSubmit « _next », ce qui indique un retour du service après soumission.
-  window.addEventListener('message', event => {
-    if (!sending || !frame || event.source !== frame.contentWindow) return;
-    const data = event.data;
-    if (!data || data.type !== 'PHONE_XPRESS_RECEIPT_V25' || data.token !== pendingToken) return;
-    // Permet aussi les pages intégrées par un iframe Odoo avec origine sandboxée.
-    if (event.origin !== location.origin && event.origin !== 'null') return;
-    receiveSuccess();
-  });
-
-  const ensureFrame = () => {
-    if (frame) return frame;
-    frame = document.createElement('iframe');
-    frame.name = 'px-formsubmit-v25';
-    frame.title = 'Transmission sécurisée de la demande Phone Xpress';
-    frame.setAttribute('aria-hidden', 'true');
-    frame.tabIndex = -1;
-    frame.style.cssText = 'position:absolute;width:1px;height:1px;border:0;clip-path:inset(50%);opacity:0;pointer-events:none';
-    document.body.appendChild(frame);
-    // Repli : lecture de la page de retour, si son script est filtré.
-    frame.addEventListener('load', () => {
-      if (!sending || !pendingToken) return;
-      try {
-        const win = frame.contentWindow;
-        const meta = win.document.querySelector('meta[name="px-receipt"]');
-        const url = new URL(win.location.href);
-        if (meta?.content === 'phone-xpress-v25'
-          && url.origin === location.origin
-          && url.searchParams.get('token') === pendingToken) receiveSuccess();
-      } catch { /* Origine distante FormSubmit: aucune confirmation supposée. */ }
-    });
-    return frame;
-  };
-
   form.addEventListener('input', event => {
     if (sending) return;
     event.target.setCustomValidity?.('');
@@ -150,8 +95,7 @@
     notify('');
   });
 
-  // Bloque toute soumission native incontrôlée, y compris dans une iframe Odoo.
-  form.addEventListener('submit', event => {
+  form.addEventListener('submit', async event => {
     event.preventDefault();
     if (sending) return;
     hideFallback();
@@ -186,63 +130,75 @@
 
     if (!['http:', 'https:'].includes(location.protocol) || navigator.onLine === false) {
       showFallback(recap);
-      notify('Vous êtes hors ligne ou en aperçu local : aucun e-mail envoyé. Vous pouvez conserver votre demande ci-dessous.', true);
+      notify('Connexion indisponible ou aperçu local : aucun envoi n’a été tenté. Vous pouvez conserver votre demande ci-dessous.', true);
       return;
     }
 
-    // La destination n'est activée par JS que lorsque le gestionnaire est prêt.
-    // POST classique (comme le formulaire qui envoyait déjà les e-mails), mais
-    // dans un iframe invisible avec une URL de retour contrôlée (_next).
-    let endpoint;
+    // Le formulaire HTML garde l'action POST classique pour référence ;
+    // l'API AJAX dédiée est la méthode officiellement prise en charge sans redirection.
+    let url;
     try {
-      endpoint = new URL(form.dataset.endpoint || '');
+      const endpoint = new URL(form.dataset.endpoint || form.action);
       if (endpoint.origin !== 'https://formsubmit.co'
           || decodeURIComponent(endpoint.pathname) !== '/' + recipient
-          || endpoint.search || endpoint.hash) throw Error('endpoint');
+          || endpoint.search || endpoint.hash) throw Error('invalid endpoint');
+      url = endpoint.origin + '/ajax/' + encodeURIComponent(recipient);
     } catch {
       showFallback(recap);
-      notify('Le destinataire n’est pas correctement configuré. Contactez Phone Xpress.', true);
+      notify('La destination du formulaire est incorrecte. Contactez Phone Xpress.', true);
       return;
     }
 
-    const token = window.crypto?.randomUUID?.() || String(Date.now()) + '-' + Math.random().toString(36).slice(2);
-    const receipt = new URL('confirmation-devis.html', location.href);
-    receipt.hash = '';
-    receipt.search = new URLSearchParams({token}).toString();
-    successUrl.value = receipt.href;
     sourceUrl.value = location.href.split('#')[0];
-    if (email.value) {
-      let reply = form.querySelector('input[name="_replyto"]');
-      if (!reply) { reply = document.createElement('input'); reply.type = 'hidden'; reply.name = '_replyto'; form.appendChild(reply); }
-      reply.value = email.value;
-    }
+    const payload = Object.fromEntries(new FormData(form).entries());
+    // AJAX ignore _next ; _replyto aide Thomas à répondre directement au visiteur.
+    delete payload._next;
+    if (!email.value) delete payload.email;
+    if (email.value) payload._replyto = email.value;
 
-    frame = ensureFrame();
-    form.action = endpoint.href;
-    form.target = frame.name;
-    lastRecap = recap;
-    pendingToken = token;
-    sending = true;
-    submit.disabled = true;
-    form.setAttribute('aria-busy', 'true');
-    const label = submit.querySelector('span');
-    if (label) label.textContent = 'Envoi en cours…';
+    setSending(true);
     notify('Transmission de votre demande en cours…');
-    // AUCUN AJAX : évite le blocage réseau/CORS qui affichait la bannière rouge.
-    // La confirmation n'apparaît que lorsque la page de retour a été atteinte.
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 22000);
     try {
-      HTMLFormElement.prototype.submit.call(form);
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        body: JSON.stringify(payload),
+        signal: controller.signal
+      });
+      let data;
+      try { data = await response.json(); }
+      catch { throw new Error('invalid-response'); }
+      // FormSubmit utilise parfois des chaînes : "false" doit rester un échec.
+      const accepted = response.ok && (data?.success === true || data?.success === 'true');
+      if (!accepted) {
+        const message = String(data?.message || '');
+        showFallback(recap);
+        if (/activat|confirm.*(mail|email|adresse)/i.test(message)) {
+          notify('FormSubmit demande l’activation de cette adresse e-mail. Ouvrez le message d’activation reçu sur la boîte Phone Xpress.', true);
+        } else {
+          notify('FormSubmit n’a pas confirmé l’envoi. Votre demande est conservée ci-dessous ; vérifiez la configuration ou contactez Phone Xpress.', true);
+        }
+        return;
+      }
+
+      hideFallback();
+      notify('');
+      summary.value = recap;
+      copyStatus.textContent = '';
+      form.hidden = true;
+      result.hidden = false;
+      section?.classList.add('quote-is-confirmed');
+      result.scrollIntoView({behavior: reduced.matches ? 'auto' : 'smooth', block: 'center'});
+      resultTitle.focus({preventScroll:true});
     } catch {
-      release(); showFallback(recap);
-      notify('Impossible de lancer l’envoi. Votre demande est conservée ci-dessous.', true);
-      return;
+      showFallback(recap);
+      notify('Impossible de vérifier la réponse de FormSubmit (réseau ou navigateur). L’envoi a peut-être abouti : vérifiez sa réception avant un nouvel essai pour éviter les doublons.', true);
+    } finally {
+      clearTimeout(timeout);
+      setSending(false);
     }
-    timer = setTimeout(() => {
-      if (!sending) return;
-      release();
-      showFallback(lastRecap);
-      notify('Nous n’avons pas reçu la confirmation de FormSubmit. L’envoi a peut-être abouti : vérifiez auprès de Phone Xpress avant tout nouvel essai.', true);
-    }, 30000);
   });
 
   newQuote.addEventListener('click', () => {
@@ -259,6 +215,6 @@
     name.focus();
   });
 
-  // L'envoi reste désactivé si ce JS ne charge pas : évite un Thanks! externe.
+  // Une erreur de chargement de ce script ne doit pas provoquer un POST non contrôlé.
   submit.disabled = false;
 })();
