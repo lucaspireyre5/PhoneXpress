@@ -1,0 +1,48 @@
+PHONE XPRESS V18 — CONTINUITE DU DECOR / COMPATIBILITE ODOO ONLINE
+
+NOUVEAUTÉS
+- Fond cosmique réellement présent dans le HTML avant les scripts, unique et fixe durant le défilement.
+- Double fondu sur le X (image et fenêtre du héros) pour éliminer les bords durs même sur écran étroit.
+- Aucun redémarrage du décor ni ligne de séparation entre les sections.
+- Eclairs cyan très discrets existants conservés, pauses et accessibilité respectées.
+- Pas de modification du formulaire, du texte, des coordonnées ou du slider iPhone.
+
+ODOO ONLINE : lire INTEGRATION-ODOO-ONLINE.md.
+Pour conserver tous les effets JavaScript, les images, le curseur iPhone et le formulaire,
+utiliser un hébergement statique HTTPS du contenu de site/ puis un bloc « Intégrer du code » avec un iframe.
+Coller directement index.html dans le bloc Odoo n’est pas équivalent : Odoo peut nettoyer scripts/balises.
+
+PHONE XPRESS V17 — FONDU CONTINU ET ÉCLAIR VIVANT
+
+MODIFICATIONS V17
+- Fondu appliqué directement aux quatre bords de la photo du X : aucun bord rectangulaire visible lorsque l’image se termine dans l’écran.
+- Un seul décor cosmique partagé derrière toute la page. Les sections et le pied de page sont transparents : l’image ne recommence plus à chaque section, sans bande de séparation.
+- Fine trace électrique cyan qui parcourt lentement les côtés, avec une petite traîne et des ramifications. Trajet de 8 secondes, pause de 5 secondes, puis alternance de côté. Pas de clignotement ni de flash plein écran.
+- Animation arrêtée lorsque l’onglet est masqué et désactivée si la préférence de mouvement réduit est active. Aucun effet ne capte les clics ni les gestes.
+- Images et contenus de la V16 conservés. Les réglages visuels V17 sont regroupés dans assets/css/cinematic-v17.css et le mouvement dans assets/js/px-lightning.js.
+
+CONSULTATION ET MISE EN LIGNE
+Extraire complètement l’archive, puis ouvrir site/index.html dans un navigateur.
+Pour votre hébergeur habituel, transférer le CONTENU du dossier site/ à la racine du site.
+Le formulaire FormSubmit existant n’a pas été envoyé lors des tests ; son activation et la réception des messages restent à vérifier depuis le domaine publié.
+
+HISTORIQUE V16
+PHONE XPRESS V16 — GALAXIE ÉLECTRIQUE
+
+MODIFICATIONS
+- Le X de l’accueil est conservé, avec un fondu elliptique sur ses quatre bords et une transition continue vers le bleu nuit de la page.
+- Les deux iPhone ont été restaurés : châssis et coins du bas complets, cadrages alignés et marges transparentes identiques. Le curseur avant/après reste utilisable à la souris, au toucher et au clavier.
+- Nouveau fond cosmique bleu nuit et cyan, nuages de lumière et filaments électriques fins dans les sections Prestations, Boutique, Thomas, Devis, puis le pied de page. Variation du cadrage et de l’intensité selon la section, sans personnage ajouté aux décors.
+- Visuels WebP optimisés, sans nouvelle dépendance à un service externe pour les décors.
+- Le fichier assets/css/cinematic-v16.css regroupe les ajustements V16.
+
+CONSULTATION
+Ouvrir index.html dans un navigateur après extraction complète du ZIP.
+Pour publier chez votre hébergeur habituel, transférer le CONTENU du dossier site/ à la racine du site.
+
+VÉRIFICATIONS
+Cadrages contrôlés sur ordinateur, tablette et téléphone. Menu mobile, navigation et curseur avant/après vérifiés. Liens vers les ressources locales et syntaxe des trois scripts contrôlés.
+Les tests n’envoient aucune demande de devis. Le formulaire existant utilise FormSubmit : son activation et la réception effective des messages doivent être vérifiées depuis le domaine publié.
+
+CRÉATION DES VISUELS
+Les iPhone restaurés et la nébuleuse ont été réalisés avec l’outil intégré de génération d’images. Les filaments décoratifs sont un SVG local. Les briefs employés sont conservés dans VISUELS-V16.txt.
