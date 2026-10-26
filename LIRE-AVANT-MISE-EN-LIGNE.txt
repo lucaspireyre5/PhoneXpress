@@ -1,3 +1,17 @@
+PHONE XPRESS V23 — FORMULAIRE SANS REDIRECTION DANS ODOO
+
+Lire INSTALLATION-FORMULAIRE-ODOO.txt pour installer cette correction.
+Le destinataire reste phonexpress34480@gmail.com. L'envoi FormSubmit
+se fait maintenant sans quitter le site, avec confirmation dans la page.
+Les tests locaux n'envoient aucun e-mail réel ; vérifier la réception
+après publication et valider l'activation FormSubmit si nécessaire.
+
+Les notes ci-dessous décrivent les versions antérieures.
+
+------------------------------------------------------------
+HISTORIQUE DES VERSIONS
+------------------------------------------------------------
+
 PHONE XPRESS V18 — CONTINUITE DU DECOR / COMPATIBILITE ODOO ONLINE
 
 NOUVEAUTÉS

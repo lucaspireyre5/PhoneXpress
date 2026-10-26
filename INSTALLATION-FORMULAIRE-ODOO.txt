@@ -1,0 +1,58 @@
+PHONE XPRESS — FORMULAIRE SANS REDIRECTION
+
+Les demandes sont envoyées à : phonexpress34480@gmail.com
+
+CORRECTION
+
+Le formulaire reste sur le site au moment de l'envoi. Il affiche une
+confirmation dans la page lorsque FormSubmit accepte la demande.
+Le destinataire, le décor, les images et les animations sont conservés.
+
+Cette version utilise toujours FormSubmit pour acheminer les e-mails.
+Elle ne nécessite ni PHP ni boîte mail OVH et convient au site intégré
+dans Odoo. Le formulaire bloque les doubles clics pendant l'envoi.
+
+INSTALLATION
+
+1. Décompressez l'archive et ouvrez le dossier PhoneXpress-main.
+2. Remplacez les fichiers du site à l'endroit où le contenu affiché dans
+   votre iframe Odoo est hébergé (votre dépôt GitHub Pages si c'est celui
+   que vous utilisez). Gardez la même adresse pour l'iframe existant.
+3. Les fichiers du formulaire à remplacer ensemble sont :
+   - index.html
+   - assets/js/site.js
+   - assets/css/site.css
+   - confidentialite.html
+   - mentions-legales.html (références de cache mises à jour)
+   Vous pouvez également transférer le contenu complet de cette archive.
+4. Rechargez la page Odoo une fois les fichiers publiés. Si l'iframe garde
+   une ancienne page, actualisez son adresse en ajoutant ?v=23 avant un
+   éventuel #devis, par exemple index.html?v=23#devis. Conservez les
+   boutons téléphone et itinéraire qui se trouvent déjà dans Odoo.
+5. Faites une demande de test et vérifiez sa réception à
+   phonexpress34480@gmail.com, y compris le courrier indésirable.
+
+L'archive ne se publie pas simplement en la joignant dans Odoo : il faut
+mettre à jour les fichiers qui sont effectivement affichés par l'iframe.
+
+ACTIVATION ET ERREURS
+
+Si FormSubmit demande une activation, ouvrez son e-mail dans
+phonexpress34480@gmail.com et validez le formulaire depuis cette boîte.
+
+Si l'envoi échoue ou si sa confirmation ne parvient pas au navigateur,
+les champs restent disponibles. Aucun nouvel envoi automatique n'est
+effectué. Vous pouvez copier la demande ou ouvrir un brouillon dans votre
+messagerie ; ce brouillon doit être envoyé manuellement. Après un envoi
+incertain, vérifiez auprès de l'atelier avant de renvoyer la demande.
+
+La confirmation indique une acceptation par le service d'envoi ; la
+réception effective de l'e-mail reste à vérifier après publication.
+
+VERIFICATIONS
+
+Les tests locaux simulent les réponses du service, y compris dans un
+iframe, afin de vérifier la confirmation, les erreurs et la conservation
+des champs sans adresser de faux messages à la boutique.
+
+Documentation officielle : https://formsubmit.co/ajax-documentation
