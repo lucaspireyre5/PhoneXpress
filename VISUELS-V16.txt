@@ -1,0 +1,24 @@
+PHONE XPRESS V16 — BRIEFS DES VISUELS
+Mode : outil intégré de génération d’images, sans API externe configurée.
+Les images générées ont ensuite été découpées en deux états, alignées, entourées de marges transparentes identiques et encodées en WebP pour le site.
+
+1. RESTAURATION DES DEUX IPHONE
+Cibles : iphone-casse-hd.webp et iphone-repare-hd.webp, fournis dans la V15.
+Livrables : assets/images/iphone-casse-complet-v16.webp et assets/images/iphone-repare-complet-v16.webp.
+Fond transparent demandé.
+
+Prompt :
+Use case: precise-object-edit / restoration. Asset type: production website before/after comparison sprite. Both attached transparent phone cutouts are EDIT TARGETS. Their bottom edge was accidentally cut straight across. Restore the COMPLETE rounded bottom frame and missing bottom corners on both phones, and remove the stray horizontal pixels beyond the phone at the upper right. Keep the same graphite titanium iPhone, the same three-quarter angle with left edge visible, exact front geometry, dynamic island and warm bronze curved wallpaper. Left version has cracked glass like reference 1, right version has perfectly intact glass like reference 2. Deliver ONE square TRANSPARENT two-column sprite sheet: LEFT HALF broken phone, RIGHT HALF repaired phone. The two phones must have EXACTLY THE SAME OUTER GEOMETRY, SIZE, VERTICAL POSITION, screen/wallpaper alignment, top and bottom padding: this image will be split into equal halves and superimposed for a comparison slider. Each phone fully visible from top to complete rounded bottom, with 7% transparent padding above and below and centered in its own equal-width half. Preserve original device realistic proportions. No cropping anywhere. No backgrounds, no shadows baked into background, no letters, no labels, no text. Photorealistic polished product cutouts, no hands, no extra objects. Most important: full visible bottom chassis on BOTH phones, no flat truncated edge; identical pixel-registered device outline on the two halves.
+
+2. NÉBULEUSE ÉLECTRIQUE
+Livrable : assets/images/px-nebula-electric.webp.
+Fond opaque demandé.
+
+Prompt :
+Use case: stylized-concept. Asset type: premium electronic-repair website decorative background, landscape 1536x1024. Create a sophisticated atmospheric deep space field in near-black navy #020917: wispy volumetric blue nebula clouds, sparse pinprick stars, softly glowing electric cyan plasma filaments concentrated toward the left and right edges, with a hint of deep violet at far edges. The central 55 percent should stay very dark, open and quiet for readable website content; the top and bottom 15 percent dissolve smoothly into uniform near-black navy so sections can blend seamlessly. Subtle filmic photorealistic cosmic photography, long exposure, extremely fine branching electric energy and light diffusion; restrained and luxurious, low saturation except local cyan highlights. Inspired by lightning/plasma energy, no anime/cartoon imagery or characters. No planets, no giant star, no horizon, no recognizable shapes, no X, no logos, no text, no grids, no hard border. Organic asymmetric clouds should be visible but dark. This will sit behind white text and service cards; preserve lots of dark negative space.
+
+3. FILAMENTS ÉLECTRIQUES
+Livrable : assets/images/px-electric-filaments.svg.
+SVG local écrit pour le site : quatre ramifications aux bords d’un champ transparent 1600 × 1000, centre dégagé, cœur fin et halo modéré. Aucun texte ni personnage.
+
+Le X de l’accueil (px-x-cinematic.webp) est conservé. Son fondu est réalisé dans assets/css/cinematic-v16.css pour adapter la transition à la taille de l’écran.

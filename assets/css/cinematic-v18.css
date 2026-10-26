@@ -1,0 +1,289 @@
+/* V17 — a shared atmosphere behind the whole page; fade the actual artwork. */
+:root { --px-space: #020917; --px-electric: #7edfff; }
+body { background: var(--px-space); }
+body::after { display: none; }
+
+/* This one fixed field crosses all section boundaries. No image tiles,
+   mirrored repeats, section vignettes, or background restarts. */
+.cyber-backdrop {
+  position: fixed !important; inset: 0; z-index: 0 !important;
+  pointer-events: none; overflow: hidden; opacity: 1 !important;
+  background:
+    radial-gradient(ellipse 44% 80% at 50% 50%, #02091775, transparent 85%),
+    linear-gradient(#0209173d, #02091740),
+    url('../images/px-nebula-electric.webp') center / cover no-repeat,
+    var(--px-space) !important;
+}
+.cyber-backdrop::before {
+  content: ''; display: block !important; position: absolute; inset: 0;
+  background: url('../images/px-electric-filaments.svg') center / cover no-repeat !important;
+  opacity: .21 !important; animation: none !important; will-change: auto;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 45%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, #000 45%, transparent 100%);
+}
+.cyber-backdrop::after { opacity: .035 !important; animation: none !important; }
+.cyber-scan, .cyber-signal { display: none !important; }
+.px-lightning {
+  display: block; position: fixed; inset: 0; z-index: 0;
+  width: 100%; height: 100%; pointer-events: none;
+}
+.hero-premium, .services-section, .shop-section, .person-section,
+.quote-section, .legal-section, .site-footer {
+  background: transparent !important;
+  border-top: 0 !important; border-bottom: 0 !important;
+}
+.services-section, .shop-section, .person-section, .quote-section, .legal-section {
+  position: relative; isolation: isolate; overflow: visible;
+}
+.services-section::before, .shop-section::before, .person-section::before,
+.quote-section::before, .legal-section::before, .services-section::after,
+.shop-section::after, .person-section::after, .quote-section::after,
+.legal-section::after { display: none !important; }
+.services-section > .container, .shop-section > .container,
+.person-section > .container, .quote-section > .container,
+.legal-section > .container { position: relative; z-index: 2; }
+
+/* The mask follows the exact image rectangle, so its own left/right
+   edges reach alpha zero even when the viewport is wider than the art. */
+.hero-premium::before { display: none !important; }
+.hero-cinematic-art { position: absolute; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
+.hero-cinematic-art img {
+  position: absolute; top: 49%; left: clamp(90px, 14vw, 350px);
+  width: clamp(1060px, 102vw, 1510px); max-width: none;
+  height: auto; aspect-ratio: 1672 / 941; object-fit: contain;
+  transform: translateY(-50%); filter: saturate(.94) contrast(1.02);
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0%, #000 15%, #000 73%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, #000 21%, #000 65%, transparent 100%);
+  mask-image:
+    linear-gradient(90deg, transparent 0%, #000 15%, #000 73%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, #000 21%, #000 65%, transparent 100%);
+  -webkit-mask-composite: source-in; mask-composite: intersect;
+}
+.hero-premium::after {
+  background: linear-gradient(90deg, #020917f5 0%, #020917df 23%, #02091780 43%, #02091710 67%, transparent 100%) !important;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 17%, #000 72%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 17%, #000 72%, transparent 100%);
+}
+.hero-premium .honey-glow {
+  inset: 12% -8% 0 35%; width: auto; height: auto;
+  background: radial-gradient(ellipse at 60% 51%, #168bdf16, transparent 67%);
+  filter: none; animation: none; z-index: -1;
+}
+.hero-premium .hero-layout {
+  min-height: 720px; padding-top: 52px; padding-bottom: 44px;
+  grid-template-columns: minmax(0, 1.06fr) minmax(0, .94fr);
+}
+.hero-premium .hero-media { min-height: 0; height: auto !important; margin-top: 0; }
+.hero-premium .hero-media .px-repair { gap: 8px; }
+.hero-premium .hero-media .px-repair-stage {
+  width: clamp(235px, 21vw, 278px); height: auto; aspect-ratio: 553 / 1220;
+  overflow: visible !important;
+  filter: drop-shadow(0 22px 30px #000b) drop-shadow(0 0 18px #369aff26);
+}
+.hero-premium .hero-media .px-repair-img { width: 100%; height: 100%; aspect-ratio: 553 / 1220; object-fit: contain; }
+.hero-premium .px-repair-seam { top: 5%; height: 89%; }
+.hero-premium .px-repair-range { width: min(270px, 85%); height: 44px; margin-top: 0; }
+.hero-premium .px-repair-range:focus-visible { outline: 2px solid #d8f8ff; outline-offset: 7px; }
+.hero-premium .px-repair-hint { color: #c0ddeb; letter-spacing: .16em; }
+.hero-premium .hero-brands { border-top: 0; }
+.hero-premium .hero-brands-list span { display: inline; }
+.hero-shards { opacity: .14; }
+.hero-copy, .section-head, .shop-copy, .person-copy, .quote-top { text-shadow: 0 2px 20px #020917cc; }
+.service-card { background: linear-gradient(145deg, #0c2339f5, #061424f7) !important; }
+.service-card:hover { box-shadow: 0 12px 35px #0006, 0 0 24px #29b9ff12; }
+.service-visual::after { z-index: 1; }
+.shop-photo, .person-photo { box-shadow: 0 20px 60px #0008, 0 0 35px #3eaaff0d; }
+.quote-form-wrap { background: linear-gradient(145deg, #0b2135f7, #061424f7) !important; border-color: #71caff40; box-shadow: 0 25px 56px #0008; }
+.quote-form .field label { color: #e0eff9; }
+.quote-form .field label small { color: #aec5d6; }
+.quote-form .field label > span, .quote-form .consent b { color: #8de4ff; }
+.quote-form .field input, .quote-form .field select, .quote-form .field textarea { background: #03101dd9; color: #edf8ff; border-color: #52728a; }
+.quote-form .field input::placeholder, .quote-form .field textarea::placeholder { color: #9fb8cb; opacity: 1; }
+.quote-form .field select option { background: #081b2d; color: #edf8ff; }
+.quote-form .field input:focus, .quote-form .field select:focus, .quote-form .field textarea:focus { border-color: #8de4ff; box-shadow: 0 0 0 3px #4fc9ff26; }
+.quote-form .consent { color: #c4dae8; }
+.quote-form .consent a { color: #9ce6ff; text-decoration: underline; }
+.quote-form .form-small { color: #aec5d6; }
+.site-footer { position: relative; isolation: isolate; }
+
+@media (min-width: 821px) and (max-width: 1100px) {
+  .hero-premium .hero-layout { min-height: 680px; grid-template-columns: 55% 45%; gap: 0; }
+  .hero-premium .hero-media .px-repair-stage { width: clamp(220px, 23vw, 255px); }
+  .hero-cinematic-art img { left: 6%; width: 1200px; }
+}
+@media (max-width: 820px) {
+  .cyber-backdrop { background-position: center, center, 22% center !important; }
+  .hero-premium .hero-layout { grid-template-columns: 1fr; min-height: 0; padding: 46px 0 32px; gap: 24px; }
+  .hero-cinematic-art { top: 29%; bottom: 0; }
+  .hero-cinematic-art img {
+    left: 50%; top: 53%; width: max(112%, 780px); height: auto;
+    transform: translate(-50%, -50%);
+    -webkit-mask-image:
+      linear-gradient(90deg, transparent, #000 18%, #000 76%, transparent),
+      linear-gradient(180deg, transparent, #000 20%, #000 63%, transparent);
+    mask-image:
+      linear-gradient(90deg, transparent, #000 18%, #000 76%, transparent),
+      linear-gradient(180deg, transparent, #000 20%, #000 63%, transparent);
+  }
+  .hero-premium::after {
+    background: linear-gradient(180deg, #020917c9 0%, #020917cc 22%, #02091780 42%, transparent 65%) !important;
+    -webkit-mask-image: linear-gradient(180deg, #000, #000 65%, transparent);
+    mask-image: linear-gradient(180deg, #000, #000 65%, transparent);
+  }
+  .hero-premium .hero-media { min-height: 0; padding: 0; }
+  .hero-premium .hero-media .px-repair-stage { width: clamp(218px, 33vw, 255px); }
+  .hero-premium .hero-proof span { width: auto; }
+}
+@media (max-width: 550px) {
+  .cyber-backdrop { background-position: center, center, 5% center !important; }
+  .cyber-backdrop::before { background-position: left center !important; opacity: .16 !important; }
+  .hero-premium .hero-layout { padding-top: 36px; gap: 28px; }
+  .hero-premium .hero-copy > p { font-size: 14px; line-height: 1.85; }
+  .hero-premium .hero-actions .btn { font-size: 12px; }
+  .hero-premium .hero-media { padding-top: 0; }
+  .hero-premium .hero-media .px-repair-stage { width: clamp(202px, 55vw, 238px); }
+  .hero-premium .px-repair-range { width: min(250px, 84%); }
+  .hero-premium .px-repair-hint { font-size: 10px; }
+  .hero-cinematic-art { top: 38%; }
+  .hero-cinematic-art img { width: 820px; top: 50%; }
+  .hero-premium .hero-brands { gap: 13px; }
+  .hero-premium .hero-brands-list { display: flex; gap: 12px 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .px-lightning { display: none !important; }
+  .hero-shards .shard, .honey-glow { animation: none !important; }
+}
+@media print {
+  .cyber-backdrop, .px-lightning, .hero-cinematic-art { display: none !important; }
+}
+
+
+/* ==========================================================
+   PHONE XPRESS V18 — SEAMLESS / ODOO-EMBED READY
+   - One atmospheric wallpaper for entire site, fixed with the viewport
+   - Hero illustration fades at IMAGE edges and VIEWPORT edges
+   - ZERO independent repeats at section changes
+   - Peripheral electric trace handled by px-lightning.js
+   ========================================================== */
+:root { --px-space: #020917; }
+html { background: var(--px-space); }
+body { isolation: isolate; background: var(--px-space); }
+body::before,body::after { display:none !important; }
+/* Crucial: a single actual DOM node, not re-created by the editor/JS. */
+body > .cyber-backdrop {
+  display: block !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  width: 100%; height: 100dvh;
+  pointer-events: none !important;
+  background:
+    radial-gradient(ellipse 38% 62% at 50% 48%, rgba(2,9,23,.20),transparent 90%),
+    linear-gradient(180deg, rgba(2,9,23,.20), rgba(2,9,23,.06) 38%, rgba(2,9,23,.3) 100%),
+    url('../images/px-nebula-electric.webp') center center/cover no-repeat,
+    #020917 !important;
+  overflow:hidden;
+  contain: paint;
+}
+body > .cyber-backdrop::before {
+  display:block !important;
+  content:""; position:absolute; inset:-3%;
+  background:url('../images/px-electric-filaments.svg') center center / cover no-repeat !important;
+  opacity:.16 !important;
+  will-change:transform;
+  transform:translate3d(0,0,0) scale(1.03);
+  animation:pxAmbientFloat 38s ease-in-out infinite alternate !important;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000 28%,transparent 94%);
+  mask-image:radial-gradient(ellipse at center,#000 28%,transparent 94%);
+}
+body > .cyber-backdrop::after { display:none !important; }
+@keyframes pxAmbientFloat {
+  from { transform:translate3d(-1%,0,0) scale(1.03); }
+  to { transform:translate3d(1%,1%,0) scale(1.045); }
+}
+/* Place visible content above the wallpaper but don't give any section a
+   rectangular background, border, inset shadow or its own repeated wallpaper. */
+main, .site-footer, .site-header { position: relative; }
+main { z-index:1; }
+.hero-premium,.services-section,.shop-section,.person-section,.quote-section,.legal-section,.site-footer {
+  background:transparent !important;
+  background-image:none !important;
+  border:0 !important;
+  box-shadow:none;
+}
+.hero-premium { isolation:isolate; overflow:hidden; }
+.services-section,.shop-section,.person-section,.quote-section,.legal-section,.site-footer {
+  overflow:visible;
+}
+/* The art is wider than some viewports. Fade the art AND its viewport window.
+   Otherwise CSS cropping of an oversized image leaves a hard vertical line. */
+.hero-premium .hero-cinematic-art {
+  position:absolute !important;
+  top:0;right:0;bottom:0;left:0;
+  z-index:-2;
+  overflow:hidden;
+  pointer-events:none;
+  -webkit-mask-image:
+     linear-gradient(90deg,transparent 0%,#000 11%,#000 89%,transparent 100%),
+     linear-gradient(180deg,transparent 0%,#000 13%,#000 66%,transparent 100%);
+  mask-image:
+     linear-gradient(90deg,transparent 0%,#000 11%,#000 89%,transparent 100%),
+     linear-gradient(180deg,transparent 0%,#000 13%,#000 66%,transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-composite:intersect;
+}
+.hero-premium .hero-cinematic-art img {
+  left:50%; top:49%;
+  width:min(1680px,128vw); height:auto;max-width:none;
+  transform:translate(-50%,-50%);
+  -webkit-mask-image:
+    linear-gradient(90deg,transparent 0%,#000 14%,#000 80%,transparent 100%),
+    linear-gradient(180deg,transparent 0%,#000 14%,#000 72%,transparent 100%);
+  mask-image:
+    linear-gradient(90deg,transparent 0%,#000 14%,#000 80%,transparent 100%),
+    linear-gradient(180deg,transparent 0%,#000 14%,#000 72%,transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-composite:intersect;
+}
+/* Soft readability veil dissolves instead of having a hero-ending stripe. */
+.hero-premium::after {
+  left:0;right:0;top:0;bottom:0; height:auto;
+  background:linear-gradient(90deg,rgba(2,9,23,.94),rgba(2,9,23,.66) 35%,rgba(2,9,23,.08) 82%) !important;
+  box-shadow:none !important;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 12%,#000 52%,transparent 100%);
+  mask-image:linear-gradient(180deg,transparent 0%,#000 12%,#000 52%,transparent 100%);
+}
+/* Prevent the original legacy per-section dividers from resurfacing. */
+.hero-premium::before,
+.services-section::before,.shop-section::before,.person-section::before,.quote-section::before,.legal-section::before,
+.services-section::after,.shop-section::after,.person-section::after,.quote-section::after,.legal-section::after {
+  display:none !important;
+}
+/* Lightning is behind the content and cannot block any interaction. */
+.px-lightning{position:fixed!important;inset:0!important;z-index:0!important;pointer-events:none!important;}
+@media(max-width:820px) {
+  body > .cyber-backdrop { background-position:center,center,22% 50% !important; }
+  .hero-premium .hero-cinematic-art {
+    top:23%;bottom:0;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 13%,#000 87%,transparent),linear-gradient(180deg,transparent,#000 13%,#000 65%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 13%,#000 87%,transparent),linear-gradient(180deg,transparent,#000 13%,#000 65%,transparent);
+  }
+  .hero-premium .hero-cinematic-art img{left:50%;top:50%;width:max(790px,124vw);}
+  .hero-premium::after {
+    background:linear-gradient(180deg,rgba(2,9,23,.9),rgba(2,9,23,.72) 27%,rgba(2,9,23,.12) 73%,transparent) !important;
+  }
+}
+@media(max-width:550px) {
+  body > .cyber-backdrop { background-position:center,center,8% 50% !important; }
+  body > .cyber-backdrop::before{opacity:.12 !important;}
+  .hero-premium .hero-cinematic-art { top:37%; }
+  .hero-premium .hero-cinematic-art img{width:780px;}
+}
+@media(prefers-reduced-motion:reduce){
+  body > .cyber-backdrop::before { animation:none!important;will-change:auto; }
+  .px-lightning { display:none!important; }
+}
+@media print {
+  body > .cyber-backdrop,.px-lightning{display:none!important;}
+}

@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" fill="none">
+  <defs>
+    <linearGradient id="arc-left" x1="-60" y1="120" x2="440" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2a70c2" stop-opacity="0"/>
+      <stop offset=".23" stop-color="#268dff" stop-opacity=".45"/>
+      <stop offset=".5" stop-color="#80eaff"/>
+      <stop offset=".73" stop-color="#329aff" stop-opacity=".65"/>
+      <stop offset="1" stop-color="#2359c0" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="arc-right" x1="1690" y1="-40" x2="1230" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#347fff" stop-opacity="0"/>
+      <stop offset=".25" stop-color="#477fff" stop-opacity=".7"/>
+      <stop offset=".52" stop-color="#8ceaff"/>
+      <stop offset=".77" stop-color="#2897ea" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#3a57ba" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="arc-bottom" x1="-90" y1="1080" x2="1090" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3784d9" stop-opacity="0"/>
+      <stop offset=".36" stop-color="#4fb5ff" stop-opacity=".7"/>
+      <stop offset=".6" stop-color="#a0e9ff"/>
+      <stop offset="1" stop-color="#2d67cf" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="arc-top" x1="620" y1="-80" x2="1320" y2="170" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4e76c9" stop-opacity="0"/>
+      <stop offset=".42" stop-color="#a7e5ff" stop-opacity=".7"/>
+      <stop offset=".65" stop-color="#487ee4" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#477be1" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="mote">
+      <stop stop-color="#d9f9ff" stop-opacity=".9"/>
+      <stop offset=".24" stop-color="#5ad4ff" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#177fff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="halo" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="3.5"/>
+    </filter>
+    <filter id="soft-halo" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <path id="left-spine" d="M-58 104 31 178 48 173 87 235 105 234 94 268 144 308 137 325 177 343 164 367 202 415 189 436 226 480 215 508 253 544 246 572 286 609 285 637 327 666 340 702 401 741"/>
+    <path id="left-branches" d="m144 308-54 16-18 37-39 18-15 49-47 31m206-116 42-17 1-24 43-31 4-27 41-22m-92 258-49 6-16 29-31 1-20 29-54 17m146-91 47-26 24 3 34-29 27-2 25-34m-58 191-39 4-13 29-44 16-8 39-23 11m54-184-10-31-31-15-11-25-47-13m235 93 30-14 18 6 44-24 37 1"/>
+    <path id="right-spine" d="m1684-36-74 97-28-1-39 46 8 21-48 36 3 23-39 39 11 23-56 42 6 32-48 21 9 31-41 44 7 18-47 32 10 29-39 35 9 27-30 41 10 19-26 51 11 30-30 33-2 45-39 50"/>
+    <path id="right-branches" d="m1506 186 35 13 13 29 53 17 15 24 57 12m-212-55-24-15-8-29-43-21-15-36-45-13m88 211 40 14 15 31 40 11 13 29 59 5m-151 3-44-12-27-31-36 6-26-21-47-6m158 152 45 16 17-8 38 32 43 14m-164 6-34-13-22 8-45-18-36 12m131-73 28-14 9-29 38-17 8-20m-62 194 41 6 18 26 39 6 16 26 57 12"/>
+    <path id="bottom-spine" d="m-70 1018 104-36 18 8 73-40 31 8 51-38 28 12 64-27 24 8 54-27 33 11 52-22 24 14 68-22 28 13 51-12 25 11 55-8 32 17 80-7 44 18 73 1"/>
+    <path id="bottom-branches" d="m207 920 8-41 25-15 2-28 45-19m69 69-3-37 29-19 5-30 37-17m77 52 32 33-7 24 34 31 5 27m132-99 23-29 29 1 25-27 48 2m-378-49-21-22 5-28-21-22"/>
+    <path id="top-spine" d="m611-41 65 44 23-7 48 38 28-8 42 30 21-12 44 26 29-13 39 22 30-12 47 25 23-5 57 24 26-6 54 32 34-5 46 36 52 3"/>
+    <path id="top-branches" d="m838 44 19 35-12 17 23 31-5 26m76-45 21 31 29 3 17 31 35 11m-148-152 33-31 27 2 22-24 33-1m139 95 24-28 27 1 18-22 37 3"/>
+  </defs>
+
+  <!-- Peripheral light spill; the centre stays transparent for copy. -->
+  <g stroke-linecap="round" stroke-linejoin="round" filter="url(#soft-halo)" opacity=".19">
+    <use href="#left-spine" stroke="url(#arc-left)" stroke-width="18"/>
+    <use href="#right-spine" stroke="url(#arc-right)" stroke-width="16"/>
+    <use href="#bottom-spine" stroke="url(#arc-bottom)" stroke-width="13"/>
+    <use href="#top-spine" stroke="url(#arc-top)" stroke-width="12"/>
+  </g>
+  <g stroke-linecap="round" stroke-linejoin="round" filter="url(#halo)" opacity=".6">
+    <use href="#left-spine" stroke="url(#arc-left)" stroke-width="3.1"/>
+    <use href="#left-branches" stroke="url(#arc-left)" stroke-width="1.9"/>
+    <use href="#right-spine" stroke="url(#arc-right)" stroke-width="3"/>
+    <use href="#right-branches" stroke="url(#arc-right)" stroke-width="1.6"/>
+    <use href="#bottom-spine" stroke="url(#arc-bottom)" stroke-width="2.5"/>
+    <use href="#bottom-branches" stroke="url(#arc-bottom)" stroke-width="1.4"/>
+    <use href="#top-spine" stroke="url(#arc-top)" stroke-width="2.1"/>
+    <use href="#top-branches" stroke="url(#arc-top)" stroke-width="1.4"/>
+  </g>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <use href="#left-spine" stroke="url(#arc-left)" stroke-width="1.25" opacity=".9"/>
+    <use href="#left-branches" stroke="url(#arc-left)" stroke-width=".65" opacity=".67"/>
+    <use href="#right-spine" stroke="url(#arc-right)" stroke-width="1.1" opacity=".86"/>
+    <use href="#right-branches" stroke="url(#arc-right)" stroke-width=".65" opacity=".58"/>
+    <use href="#bottom-spine" stroke="url(#arc-bottom)" stroke-width="1.05" opacity=".65"/>
+    <use href="#bottom-branches" stroke="url(#arc-bottom)" stroke-width=".6" opacity=".44"/>
+    <use href="#top-spine" stroke="url(#arc-top)" stroke-width=".9" opacity=".58"/>
+    <use href="#top-branches" stroke="url(#arc-top)" stroke-width=".55" opacity=".4"/>
+  </g>
+
+  <!-- Small hot cores at a handful of junctions, with no animated flashes. -->
+  <g fill="url(#mote)">
+    <circle cx="144" cy="308" r="10"/><circle cx="226" cy="480" r="8"/>
+    <circle cx="286" cy="609" r="8"/><circle cx="1506" cy="186" r="9"/>
+    <circle cx="1376" cy="344" r="10"/><circle cx="1285" cy="502" r="8"/>
+    <circle cx="356" cy="886" r="8"/><circle cx="700" cy="867" r="6"/>
+    <circle cx="882" cy="70" r="6"/><circle cx="1072" cy="99" r="6"/>
+  </g>
+  <g fill="#8edbff">
+    <circle cx="54" cy="94" r=".8" opacity=".4"/><circle cx="173" cy="168" r=".7" opacity=".55"/>
+    <circle cx="295" cy="92" r="1" opacity=".3"/><circle cx="336" cy="213" r=".6" opacity=".45"/>
+    <circle cx="76" cy="575" r=".8" opacity=".6"/><circle cx="166" cy="664" r=".65" opacity=".5"/>
+    <circle cx="373" cy="548" r=".8" opacity=".38"/><circle cx="60" cy="752" r=".6" opacity=".5"/>
+    <circle cx="409" cy="942" r="1" opacity=".47"/><circle cx="617" cy="948" r=".6" opacity=".5"/>
+    <circle cx="880" cy="904" r=".8" opacity=".3"/><circle cx="1050" cy="960" r=".7" opacity=".4"/>
+    <circle cx="1225" cy="896" r=".8" opacity=".6"/><circle cx="1460" cy="772" r=".7" opacity=".55"/>
+    <circle cx="1545" cy="636" r="1" opacity=".4"/><circle cx="1476" cy="452" r=".8" opacity=".6"/>
+    <circle cx="1249" cy="245" r=".6" opacity=".45"/><circle cx="1572" cy="350" r=".65" opacity=".55"/>
+    <circle cx="1346" cy="87" r=".8" opacity=".4"/><circle cx="1176" cy="39" r=".6" opacity=".6"/>
+    <circle cx="972" cy="159" r=".6" opacity=".25"/><circle cx="616" cy="65" r=".7" opacity=".35"/>
+  </g>
+</svg>
