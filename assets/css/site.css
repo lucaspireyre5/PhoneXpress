@@ -660,3 +660,37 @@ main,.site-footer{position:relative;z-index:1}
   .quote-actions { flex-direction: column; }
   .quote-actions .btn { flex: auto; width: 100%; }
 }
+
+
+/* V25 — écran de confirmation identique en composition à Phone Games, couleurs Phone Xpress. */
+.quote-section.quote-is-confirmed .quote-top,
+.quote-section.quote-is-confirmed .quote-aside { display: none !important; }
+.quote-section.quote-is-confirmed .quote-grid { display:grid;grid-template-columns:minmax(0,740px);justify-content:center; }
+.quote-section.quote-is-confirmed .quote-form-wrap {
+  border-radius:21px!important;
+  clip-path:none!important;
+  padding:44px 44px 40px;
+  background:linear-gradient(145deg,#fcfeff,#edf7ff)!important;
+  border:1px solid #d0edfc;
+  box-shadow:0 26px 85px rgba(0,5,20,.42), 0 1px 0 rgba(255,255,255,.8) inset;
+  color:#14273d;
+}
+.quote-section.quote-is-confirmed .quote-form-wrap::before { display:none; }
+.quote-is-confirmed .quote-confirmation {color:#334962; font-size:13px;line-height:1.55;}
+.quote-confirm-eyebrow {margin:0 0 13px;color:#1479c9;font-size:10px;font-weight:850;letter-spacing:.17em;display:flex;gap:9px;align-items:center;}
+.quote-confirm-dot{display:inline-block;width:7px;height:7px;background:#2398fa;border-radius:50%;box-shadow:0 0 0 3px #ddebff;}
+.quote-section .quote-confirm-heading {font-size:clamp(28px,4vw,39px)!important;font-weight:900;line-height:1.08;letter-spacing:-.06em;color:#121b2a!important;margin:0 0 9px;}
+.quote-section .quote-confirm-heading em {font-style:normal;color:#157dd7!important;}
+.quote-confirm-subtitle{margin:0 0 28px;color:#667c93;}
+.quote-is-confirmed .quote-confirmation h3 {font-size:19px;line-height:1.3;font-weight:850;letter-spacing:-.02em;color:#172435;margin:0 0 12px;}
+.quote-is-confirmed .quote-confirm-message{margin:0 0 15px;color:#60778e;}
+.quote-is-confirmed .quote-confirmation textarea {background:#fff;color:#233b57;border:1px solid #b9d9f5;border-radius:9px;padding:15px 14px;margin:0;line-height:1.6;font-size:13px;min-height:170px;resize:vertical;}
+.quote-is-confirmed .quote-confirmation textarea:focus {outline:2px solid #299ee8;outline-offset:1px;}
+.quote-is-confirmed .quote-success-actions{margin:16px 0 13px;gap:8px;}
+.quote-is-confirmed .quote-success-actions .btn{padding:15px 15px;min-height:50px;border-radius:9px;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.quote-is-confirmed .quote-success-actions .btn-primary{background:linear-gradient(110deg,#2688c8,#269fea);border:0;color:white;box-shadow:0 10px 20px #1685d030;}
+.quote-is-confirmed .quote-success-actions .quote-secondary{background:#f7fbff;color:#17283b;border:1px solid #acd4f5;}
+.quote-new-link{border:0;padding:7px 4px;background:none;color:#096dc2;font-size:12px;font-weight:800;text-decoration:underline;cursor:pointer;}
+.quote-new-link:hover{color:#034878;}
+.quote-is-confirmed #quote-copy-status{font-size:12px;color:#166d9e;}
+@media(max-width:650px){.quote-section.quote-is-confirmed .quote-form-wrap{padding:27px 20px 28px;}.quote-is-confirmed .quote-success-actions{flex-direction:column;}.quote-is-confirmed .quote-success-actions .btn{width:100%;}}

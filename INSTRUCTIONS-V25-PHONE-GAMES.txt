@@ -1,0 +1,41 @@
+PHONE XPRESS V25 - CONFIRMATION COMME PHONE GAMES
+================================================
+
+RESULTAT
+* Après une soumission confirmée, l'utilisateur reste sur le site.
+* La section présente « Votre demande a été prise en charge », le récapitulatif,
+  « Copier le récapitulatif », « Appeler », « Nouvelle demande ».
+* Aucun affichage visible de la page externe « Thanks! ».
+
+ENVOI
+Destinataire : phonexpress34480@gmail.com
+FormSubmit standard (POST) : https://formsubmit.co/phonexpress34480@gmail.com
+Le POST est effectué dans un iframe INVISIBLE. Le champ _next ramène cet iframe
+vers le fichier confirmation-devis.html du même domaine. SEUL ce retour valide
+l'affichage de la confirmation. L'envoi ne se répète jamais automatiquement.
+
+FICHIERS IMPERATIFS A METTRE A JOUR ENSEMBLE
+1. index.html
+2. assets/js/quote-form.js
+3. assets/css/site.css
+4. confirmation-devis.html (NOUVEAU, indispensable !)
+
+Le plus sûr reste de remplacer le CONTENU COMPLET de votre dépôt GitHub Pages.
+Si votre dépôt affiche son contenu à la racine, ne mettez pas le dossier
+« PhoneXpress-main » lui-même dans le dépôt : mettez les fichiers QU'IL CONTIENT.
+
+ODOO
+Si Odoo intègre le site via une iframe qui pointe vers GitHub Pages, il faut
+modifier LE DEPOT que pointe l'iframe. Modifier seulement les fichiers dans
+Odoo ne suffit pas. Changer le paramètre de cache de l'URL iframe en ?v=25,
+par ex. https://lucaspireyre5.github.io/<depot>/?v=25#devis.
+Faire Ctrl+Maj+R puis effectuer UNE demande de test et vérifier la réception
+réelle de son e-mail dans phonexpress34480@gmail.com.
+
+ATTENTION
+Si FormSubmit ne redirige pas vers le fichier de confirmation (activation,
+filtre anti-spam, réseau, ou limitation des iframes), le système affiche un
+message indiquant qu'il est impossible de CONFIRMER l'envoi. Cela évite
+une fausse promesse de transmission. Les données restent conservées à l'écran.
+Pour les formulaires natifs, le paramètre _captcha=false est utilisé, ce qui
+peut déclencher des restrictions anti-spam du prestataire.
