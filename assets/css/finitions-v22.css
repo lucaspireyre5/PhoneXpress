@@ -1,0 +1,10 @@
+/* Phone Xpress V22: actions téléphoniques gérées EXCLUSIVEMENT par Odoo. */
+.footer-coord .footer-phone { color:#b8d3e4; }
+.shop-links .shop-call { text-decoration:none; cursor:default; }
+.quote-aside-card .big-phone { display:block; cursor:default; }
+/* Space below content so the Odoo-hosted floating actions never hide contact details. */
+@media(max-width:550px) {
+  .site-footer { padding-bottom:calc(122px + env(safe-area-inset-bottom)) !important; }
+  .px-mascot { bottom:calc(84px + env(safe-area-inset-bottom)) !important; }
+  .mascot-dialog { bottom:105px !important; }
+}

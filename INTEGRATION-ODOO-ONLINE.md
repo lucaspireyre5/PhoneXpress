@@ -1,10 +1,14 @@
-# Phone Xpress V20 — intégration GitHub Pages / Odoo Online
+# V22 — Version intégrée uniquement dans Odoo Online
 
-Votre site a pour adresse : https://lucaspireyre5.github.io/PhoneXpress/
+La page GitHub n'est qu'une source d'assets et d'iframe ; ses boutons
+téléphone et itinéraire ont été retirés (ainsi que l'ancienne page d'appel).
 
-**Aucun changement du bloc Odoo n’est nécessaire** si vous utilisez déjà une iframe vers cette URL.
-Les mises à jour se font dans le dépôt GitHub Pages, en publiant tous les fichiers du dossier `site/`, en conservant `index.html` et `assets/` à la racine.
+Le code à coller dans le bloc **Intégrer du code** d'Odoo est dans
+`../integration-odoo/01-CODE-ODOO-BOUTONS-NATIFS.html`.
+Il crée un iframe pleine largeur et deux liens **en dehors de l'iframe**.
 
-Au besoin, le code iframe est dans `integration-odoo/01-CODE-ODOO-IFRAME.html` du ZIP. Votre site reste dans une iframe avec défilement indépendant de la page Odoo.
+Aucun JavaScript côté Odoo n'est nécessaire. Odoo peut filtrer le CSS personnalisé ;
+si c'est le cas, utiliser 2 blocs Bouton Odoo avec les mêmes liens.
 
-Testez sur un véritable smartphone l’appel `tel:`, les liens Google Maps, le menu et le formulaire.
+Formulaire : `phonexpress34480@gmail.com` via FormSubmit ;
+tester la réception après mise en ligne et valider FormSubmit si demandé.

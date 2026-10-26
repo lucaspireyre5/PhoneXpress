@@ -1,0 +1,15 @@
+/* V21 — legal/footer compact lines, matching the existing dark premium style. */
+.footer-coord .footer-extra {
+ display:block; margin-top:5px; color:#b6c8da; font-size:12px;
+ line-height:1.55; overflow-wrap:anywhere;
+}
+.footer-coord .footer-extra:first-of-type { margin-top:13px; }
+.quote-form .form-privacy-inline {
+ color:#a9c4d6; font-size:12px; line-height:1.65; margin:8px 0 12px;
+}
+.quote-form .form-privacy-inline a { color:#82deff; text-underline-offset:3px; }
+.footer-bottom { justify-content:flex-start; }
+@media (max-width:550px) {
+ .footer-coord .footer-extra { font-size:12px; }
+ .quote-form .form-privacy-inline { font-size:12px; }
+}
